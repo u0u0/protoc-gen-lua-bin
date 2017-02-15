@@ -427,6 +427,7 @@ def code_gen_file(proto_file, env, is_gen):
         lua('\n')
         map(lua, env.context)
         lua('\n')
+        env.message.sort()
         map(lua, env.message)
         lua('\n')
         map(lua, env.register)
