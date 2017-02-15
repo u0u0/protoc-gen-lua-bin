@@ -62,7 +62,7 @@ localTable.ROOM_TASKTYPE_FIELD.index = 2
 localTable.ROOM_TASKTYPE_FIELD.label = 1
 localTable.ROOM_TASKTYPE_FIELD.has_default_value = false
 localTable.ROOM_TASKTYPE_FIELD.default_value = nil
-localTable.ROOM_TASKTYPE_FIELD.enum_type = TASKTYPE
+localTable.ROOM_TASKTYPE_FIELD.enum_type = localTable.TASKTYPE
 localTable.ROOM_TASKTYPE_FIELD.type = 14
 localTable.ROOM_TASKTYPE_FIELD.cpp_type = 8
 

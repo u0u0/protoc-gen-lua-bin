@@ -144,15 +144,16 @@ class Env(object):
     def get_local_name(self):
         return self.scope.get_local_name()
 
+    # return (ref_name, isImportFromOtherProto)
     def get_ref_name(self, type_name):
         try:
             node = self.lookup_name(type_name)
         except:
             # if the child doesn't be founded, it must be in this file
-            return type_name[len('.'.join(self.package)) + 2:]
+            return (type_name[len('.'.join(self.package)) + 2:], False)
         if node.filename != self.filename:
-            return node.filename + '_pb.' + node.get_local_name()
-        return node.get_local_name()
+            return (node.filename + '_pb.' + node.get_local_name(), True)
+        return (node.get_local_name(), False)
 
     def lookup_name(self, name):
         names = name.split('.')
@@ -321,14 +322,23 @@ def code_gen_field(index, field_desc, env):
         context('.default_value = %s\n' % default_value)
 
     if field_desc.HasField('type_name'):
-        type_name = env.get_ref_name(field_desc.type_name).upper()#.replace('.', '_')
+        # case 1: type import from other file, should use ABC_PB.XXX_XXX
+        # case 2: local enum_type had been moved in localTable, should use localTable.XXX_XXX
+        # case 3: local message_type should use XXX_XXX
+        (type_name, isImport) = env.get_ref_name(field_desc.type_name)
+        type_name = type_name.upper()
+        if not isImport:
+            type_name = type_name.replace('.', '_')
+            if field_desc.type == FDP.TYPE_ENUM:
+                type_name = "localTable." + type_name
+
         if field_desc.type == FDP.TYPE_MESSAGE:
             context('.message_type = %s\n' % type_name)
         else:
             context('.enum_type = %s\n' % type_name)
 
     if field_desc.HasField('extendee'):
-        type_name = env.get_ref_name(field_desc.extendee)
+        (type_name, isImport) = env.get_ref_name(field_desc.extendee)
         env.register.append(
             "%s.RegisterExtension(%s)\n" % (type_name, obj_name)
         )
@@ -359,6 +369,8 @@ def code_gen_message(message_descriptor, env, containing_type = None):
     enums = []
     for enum_desc in message_descriptor.enum_type:
         enums.append(code_gen_enum(enum_desc, env))
+        for enum_value in enum_desc.value:
+            env.enum.append('%s = %d\n' % (enum_value.name, enum_value.number))
     context('.enum_types = {%s}\n' % ', '.join(enums))
 
     fields = []
