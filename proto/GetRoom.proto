@@ -1,0 +1,16 @@
+package com.gameroot.lg.message;
+
+import "RoomInfo.proto";
+import "ResultInfo.proto";
+
+message GetRoomRequest
+{
+	repeated int32 roomId = 1;
+}
+
+message GetRoomResponse
+{
+	required Result result = 1;
+	repeated Room room = 2;
+	optional string message = 3[default=""];
+}

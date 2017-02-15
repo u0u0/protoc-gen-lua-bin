@@ -1,0 +1,25 @@
+package com.gameroot.lg.message;
+
+enum TaskType
+{
+	/** 没有要求表示所有 */
+	NONE = 0;
+
+	/** 主线 */
+	MAINLINE = 1;
+
+	/** 活动 */
+	ACTIVITY = 2;
+
+	/** 材料 */
+	MATERIAL = 3;
+}
+
+
+message Room
+{
+	required string id = 1;
+	optional string name = 2;
+	optional TaskType taskType = 3;
+	optional int32 needHp = 4[default = 0];
+}

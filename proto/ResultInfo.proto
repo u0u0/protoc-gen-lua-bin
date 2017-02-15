@@ -1,0 +1,17 @@
+package com.gameroot.lg.message;
+
+/** 状态码 */
+enum Result{
+	/** 操作成功 */
+	SUCCESS = 0;
+
+	/** 操作失败 */
+	FAILURE = -1;
+
+	/** 没操作权限 */
+	NO_RIGHT = -2;
+
+	/** 基础数据不存在 */
+	BASEDATA_NOT_FOUND = -3;
+
+}
