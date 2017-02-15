@@ -10,6 +10,11 @@ localTable.RESULT_FAILURE_ENUM = protobuf.EnumValueDescriptor()
 localTable.RESULT_NO_RIGHT_ENUM = protobuf.EnumValueDescriptor()
 localTable.RESULT_BASEDATA_NOT_FOUND_ENUM = protobuf.EnumValueDescriptor()
 
+SUCCESS = 0
+FAILURE = -1
+NO_RIGHT = -2
+BASEDATA_NOT_FOUND = -3
+
 localTable.RESULT_SUCCESS_ENUM.name = "SUCCESS"
 localTable.RESULT_SUCCESS_ENUM.index = 0
 localTable.RESULT_SUCCESS_ENUM.number = 0
@@ -26,8 +31,4 @@ localTable.RESULT.name = "Result"
 localTable.RESULT.full_name = ".com.gameroot.lg.message.Result"
 localTable.RESULT.values = {localTable.RESULT_SUCCESS_ENUM,localTable.RESULT_FAILURE_ENUM,localTable.RESULT_NO_RIGHT_ENUM,localTable.RESULT_BASEDATA_NOT_FOUND_ENUM}
 
-BASEDATA_NOT_FOUND = -3
-FAILURE = -1
-NO_RIGHT = -2
-SUCCESS = 0
 

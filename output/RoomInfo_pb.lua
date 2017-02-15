@@ -15,6 +15,11 @@ localTable.ROOM_NAME_FIELD = protobuf.FieldDescriptor()
 localTable.ROOM_TASKTYPE_FIELD = protobuf.FieldDescriptor()
 localTable.ROOM_NEEDHP_FIELD = protobuf.FieldDescriptor()
 
+NONE = 0
+MAINLINE = 1
+ACTIVITY = 2
+MATERIAL = 3
+
 localTable.TASKTYPE_NONE_ENUM.name = "NONE"
 localTable.TASKTYPE_NONE_ENUM.index = 0
 localTable.TASKTYPE_NONE_ENUM.number = 0
@@ -79,9 +84,5 @@ ROOM.fields = {localTable.ROOM_ID_FIELD, localTable.ROOM_NAME_FIELD, localTable.
 ROOM.is_extendable = false
 ROOM.extensions = {}
 
-ACTIVITY = 2
-MAINLINE = 1
-MATERIAL = 3
-NONE = 0
 Room = protobuf.Message(ROOM)
 
