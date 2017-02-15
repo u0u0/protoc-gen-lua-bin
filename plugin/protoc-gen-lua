@@ -131,6 +131,7 @@ class Env(object):
     extend = None
     descriptor = None
     message = None
+    enum = None
     context = None
     register = None
     def __init__(self):
@@ -196,6 +197,7 @@ class Env(object):
         self.descriptor = []
         self.context = []
         self.message = []
+        self.enum = []
         self.register = []
 
     def _build_nodes(self, node, names):
@@ -404,8 +406,7 @@ def code_gen_file(proto_file, env, is_gen):
     for enum_desc in proto_file.enum_type:
         code_gen_enum(enum_desc, env)
         for enum_value in enum_desc.value:
-            env.message.append('%s = %d\n' % (enum_value.name,
-                                              enum_value.number))
+            env.enum.append('%s = %d\n' % (enum_value.name, enum_value.number))
 
     for msg_desc in proto_file.message_type:
         code_gen_message(msg_desc, env)
@@ -422,9 +423,10 @@ def code_gen_file(proto_file, env, is_gen):
         lua("local localTable = {}\n")
         map(lua, env.descriptor)
         lua('\n')
+        map(lua, env.enum)
+        lua('\n')
         map(lua, env.context)
         lua('\n')
-        env.message.sort()
         map(lua, env.message)
         lua('\n')
         map(lua, env.register)
