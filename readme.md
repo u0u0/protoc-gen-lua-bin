@@ -27,6 +27,17 @@ Quick-Cocos2dx-Community 集成 protoc-gen-lua 方案，并做以下修正：
 
 > zip包自带了protobuf-2.6.1编译后的"compiler"，并以放置在python插件目录下，以保证python插件安装成功。
 
+## proto 协议文件编码注意事项
+
+1. 不要使用 Groups，用 nested message 替代。
+2. 不支持 Extensions 特性。
+3. Oneof 特性未测试过，请不要使用。
+4. Maps 特性未测试过，请不要使用。
+5. option 特性未测试过，请不要使用。
+6. 建议分模块定义 proto，一个文件定义完全部message的粗暴方式不推荐。
+7. optional 后是 enum 类型的，建议加上 [default = enumType] 来指定默认值，否者会用nil来设置默认值。其它基本类型的默认值能正确设置。
+8. repeated 类型需要用 add() 或 append() 来添加项。add用来添加message或enum等自定义类型，append用来添加int等已知类型。
+
 ## proto 转化为 lua
 
 protoc-gen-lua是以插件的形式，配合google官方的protoc来实现.proto文件转换为lua文件，引擎中只需要转换出来lua文件，配合runtime进行编解码。
