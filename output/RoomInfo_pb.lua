@@ -72,7 +72,7 @@ localTable.ROOM_NEEDHP_FIELD.number = 4
 localTable.ROOM_NEEDHP_FIELD.index = 3
 localTable.ROOM_NEEDHP_FIELD.label = 1
 localTable.ROOM_NEEDHP_FIELD.has_default_value = true
-localTable.ROOM_NEEDHP_FIELD.default_value = 0
+localTable.ROOM_NEEDHP_FIELD.default_value = 888
 localTable.ROOM_NEEDHP_FIELD.type = 5
 localTable.ROOM_NEEDHP_FIELD.cpp_type = 1
 

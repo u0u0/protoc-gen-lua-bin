@@ -59,7 +59,7 @@ localTable.GETROOMRESPONSE_MESSAGE_FIELD.number = 3
 localTable.GETROOMRESPONSE_MESSAGE_FIELD.index = 2
 localTable.GETROOMRESPONSE_MESSAGE_FIELD.label = 1
 localTable.GETROOMRESPONSE_MESSAGE_FIELD.has_default_value = true
-localTable.GETROOMRESPONSE_MESSAGE_FIELD.default_value = ""
+localTable.GETROOMRESPONSE_MESSAGE_FIELD.default_value = "Hi"
 localTable.GETROOMRESPONSE_MESSAGE_FIELD.type = 9
 localTable.GETROOMRESPONSE_MESSAGE_FIELD.cpp_type = 9
 

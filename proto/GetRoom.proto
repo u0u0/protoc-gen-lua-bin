@@ -12,5 +12,5 @@ message GetRoomResponse
 {
 	required Result result = 1;
 	repeated Room room = 2;
-	optional string message = 3[default=""];
+	optional string message = 3[default="Hi"];
 }
